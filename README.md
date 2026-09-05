@@ -1,64 +1,77 @@
-# Destination Konpa — Site Revamp
+# Destination Konpa — Site Revamp (Static Design)
 
-A ground-up rebuild of [destinationkonpa.com](https://destinationkonpa.com), a Caribbean travel
-club site. The original site runs on WordPress + WooCommerce with a
-membership/savings-plan system and an Ambassador affiliate program; this
-project rebuilds it as a custom app so the whole experience — marketing
-site, shop, membership, and Ambassador dashboard — lives in one codebase.
+A ground-up redesign of [destinationkonpa.com](https://destinationkonpa.com), a
+Caribbean travel club site. The original runs on WordPress + WooCommerce with
+a membership/savings-plan system and an Ambassador affiliate program.
 
-## Stack
-
-- **Framework:** Next.js (App Router) + TypeScript
-- **Styling:** Tailwind CSS v4
-- **Fonts:** Playfair Display (headings) + Inter (body), via `next/font/google`
-- **Planned:** Prisma ORM, NextAuth, Stripe (Checkout + Subscriptions) — added
-  in later phases (see Roadmap below)
+**This repo is the design phase:** a plain static HTML/CSS/JS build of the
+new site — no framework, no build step. Once the design is approved, it gets
+hand-converted into a PHP WordPress theme (see Roadmap below), where each
+`.html` file here maps almost directly onto a theme template.
 
 ## Getting started
 
+No install required — every page is a real `.html` file. Easiest way to view
+it locally with working relative links:
+
 ```bash
-npm install
-npm run dev
+npx serve .
 ```
 
-Then open [http://localhost:3000](http://localhost:3000).
+Then open the URL it prints (defaults to http://localhost:3000). You can
+also just double-click `index.html` to open it directly in a browser, though
+a couple of things (like smooth root-relative paths) work best through a
+local server.
 
 ## Project structure
 
 ```
-src/
-  app/                 route segments (App Router) — one folder per page
-    api/contact/        contact form endpoint (logs submissions; no email
-                         provider wired up yet — see TODO in route.ts)
-  components/          shared UI (Header, Footer, Button, PageHero, ...)
-  lib/
-    nav.ts             nav links + site info (phone, email, tagline)
-    content.ts          marketing copy: perks, FAQs, destinations, testimonials
+index.html            Home
+about.html
+faq.html               accordion built with native <details>/<summary>
+destinations.html
+contact.html            working form (currently logs to a static "sent"
+                         state client-side — see note below)
+dk-travel-club.html      DK Travel Club membership marketing page
+ambassador.html          Ambassador affiliate program marketing page
+shop.html                DK Shop preview (no cart yet)
+
+assets/
+  css/styles.css         entire design system: colors, type, components
+  js/main.js             mobile nav toggle + contact form handling
 ```
+
+Every page repeats the same `<header>`/`<footer>` markup rather than using a
+templating include — that's intentional for a plain static site, and it also
+means a PHP developer can diff the repeated blocks, confirm they're
+identical, and lift them straight into `header.php` / `footer.php`.
 
 ## Brand
 
 - **Colors:** black `#0b0b0c`, gold `#c6971a`, cream `#faf6ec` — defined as
-  CSS custom properties / Tailwind theme tokens in `src/app/globals.css`.
+  CSS custom properties at the top of `assets/css/styles.css`.
+- **Fonts:** Playfair Display (headings) + Inter (body), loaded from Google
+  Fonts.
 - **Tagline:** "Vacation Always Paid In Advance"
 
 ## Roadmap
 
-This repo is being built in phases; each phase is its own set of commits.
+1. ✅ **Static design** — this repo. All pages, responsive layout, brand
+   system, and placeholder content/copy.
+2. ⏳ **Real content** — swap placeholder gradients for real destination
+   photos, add the logo, finalize copy.
+3. ⏳ **Port to a WordPress PHP theme** — convert this static markup into
+   theme templates (`header.php`, `footer.php`, `page-*.php`, etc.), wire up
+   WordPress's template hierarchy and menus.
+4. ⏳ **WooCommerce shop** — product catalog + checkout, replacing the
+   `shop.html` preview.
+5. ⏳ **DK Travel Club membership** — recurring savings-plan billing and a
+   member dashboard.
+6. ⏳ **Ambassador program** — referral tracking and a commission dashboard.
 
-1. ✅ **Design system + marketing pages** — Home, About, FAQ, Destinations,
-   Contact, plus placeholder pages for DK Travel Club, Ambassador, and Shop.
-2. ⏳ **Shop** — real product catalog, cart, and Stripe Checkout.
-3. ⏳ **DK Travel Club membership** — signup, recurring savings-plan billing
-   via Stripe Subscriptions, member dashboard with credit balance.
-4. ⏳ **Ambassador program** — referral codes, signup tracking, commission
-   dashboard.
+## Notes
 
-## Notes for later phases
-
-- Payments will go through Stripe. `.env.example` will list the required
-  keys once that phase starts — real keys are never committed, and you'll
-  need to add your own Stripe account's keys locally and in your hosting
-  provider's environment settings.
-- The contact form currently logs submissions server-side only
-  (`src/app/api/contact/route.ts`) — no email provider is connected yet.
+- The contact form (`contact.html`) currently intercepts its own submit in
+  `assets/js/main.js` and shows a "not connected yet" message — there's no
+  backend on a static site. When this becomes the WordPress theme, wire it
+  to `wp_mail()` (or an SMTP plugin) instead.
