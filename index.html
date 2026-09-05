@@ -24,13 +24,14 @@
   </div>
   <nav class="mainnav" aria-label="Main">
     <div class="container">
-      <a href="index.html" class="logo">Destination <span>Konpa</span></a>
+      <a href="index.html"><img class="logo-img" src="assets/img/dk-logo-black.png" alt="Destination Konpa" /></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="dk-travel-club.html">DK Travel Club</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="ambassador.html">Ambassador</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="shop.html">DK Shop</a></li>
@@ -47,6 +48,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="ambassador.html">Ambassador</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="shop.html">DK Shop</a></li>
@@ -57,7 +59,18 @@
 
 <main>
 
-  <section class="hero">
+  <section class="hero-video">
+    <video
+      class="hero-video__media"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="assets/video/hero-beach-poster.jpg"
+    >
+      <source src="assets/video/hero-beach.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-video__overlay"></div>
     <div class="container">
       <p class="eyebrow eyebrow--on-dark">Vacation Always Paid In Advance</p>
       <h1>Build your own vacation savings plan — travel when you're ready.</h1>
@@ -66,6 +79,10 @@
         <a href="dk-travel-club.html" class="btn btn-gold">Join DK Travel Club</a>
         <a href="destinations.html" class="btn btn-outline">Explore Destinations</a>
       </div>
+    </div>
+    <div class="hero-video__scroll" aria-hidden="true">
+      Scroll
+      <span></span>
     </div>
   </section>
 
@@ -114,59 +131,64 @@
       <div class="section-head">
         <div>
           <p class="eyebrow">Where You Could Be Going</p>
-          <h2>Popular Caribbean destinations</h2>
+          <h2>Upcoming DK Travel Club trips</h2>
         </div>
-        <a href="destinations.html" style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--color-gold-dark)">View all destinations &rarr;</a>
+        <a href="destinations.html" style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--color-gold-dark)">View all upcoming trips &rarr;</a>
       </div>
-      <div class="grid grid--3">
-        <div class="dest-card">
-          <div class="dest-card__image"></div>
-          <div class="dest-card__body">
-            <h3>Haiti</h3>
-            <p class="dest-card__country">Cap-Haïtien &amp; Labadee</p>
-            <p class="blurb">The heart of Konpa — beaches, culture, and music where it all began.</p>
+      <div class="grid grid--4">
+
+        <div class="trip-card">
+          <div class="trip-card__image">
+            <span class="trip-card__year">2026</span>
+            <img src="assets/img/trips/bahamas-konpa-vibes-brunch.webp" alt="Konpa Vibes Brunch, Bahamas, Winter Edition flyer" />
+          </div>
+          <div class="trip-card__body">
+            <h3>Konpa Vibes Brunch</h3>
+            <p class="dates">Bahamas &middot; Dec 11&ndash;14, 2026</p>
+            <p class="blurb">A winter-edition brunch getaway to the Bahamas.</p>
+            <a class="btn btn-outline" href="https://destinationkonpa.com/houston/bahamas-packages/" target="_blank" rel="noopener">Book Now</a>
           </div>
         </div>
-        <div class="dest-card">
-          <div class="dest-card__image"></div>
-          <div class="dest-card__body">
-            <h3>Dominican Republic</h3>
-            <p class="dest-card__country">Punta Cana</p>
-            <p class="blurb">All-inclusive resorts, white-sand beaches, and year-round sun.</p>
+
+        <div class="trip-card">
+          <div class="trip-card__image">
+            <span class="trip-card__year">2027</span>
+            <img src="assets/img/trips/haiti-getout-weekend.webp" alt="Getout Weekend, Haiti, MLK Konpa Weekend flyer" />
+          </div>
+          <div class="trip-card__body">
+            <h3>Getout Weekend</h3>
+            <p class="dates">Haiti &middot; Jan 14&ndash;18, 2027</p>
+            <p class="blurb">MLK weekend in Haiti — beach dinners, a Citadel excursion, and Labadee.</p>
+            <a class="btn btn-outline" href="https://destinationkonpa.com/kic/col-packages/" target="_blank" rel="noopener">Book Now</a>
           </div>
         </div>
-        <div class="dest-card">
-          <div class="dest-card__image"></div>
-          <div class="dest-card__body">
-            <h3>Jamaica</h3>
-            <p class="dest-card__country">Montego Bay</p>
-            <p class="blurb">Island rhythm, waterfalls, and some of the Caribbean's best resorts.</p>
+
+        <div class="trip-card">
+          <div class="trip-card__image">
+            <span class="trip-card__year">2027</span>
+            <img src="assets/img/trips/brazil-beach-me-please.jpeg" alt="Beach Me Please, Brazil Xperience, Spring Break flyer" />
+          </div>
+          <div class="trip-card__body">
+            <h3>Beach Me Please</h3>
+            <p class="dates">Brazil &middot; Mar 25&ndash;29, 2027</p>
+            <p class="blurb">Spring break beach xperience in Brazil.</p>
+            <a class="btn btn-outline" href="https://destinationkonpa.com/kin/packages/#r" target="_blank" rel="noopener">Book Now</a>
           </div>
         </div>
-        <div class="dest-card">
-          <div class="dest-card__image"></div>
-          <div class="dest-card__body">
-            <h3>Bahamas</h3>
-            <p class="dest-card__country">Nassau</p>
-            <p class="blurb">Turquoise water and island-hopping just a short flight from home.</p>
+
+        <div class="trip-card">
+          <div class="trip-card__image">
+            <span class="trip-card__year">2027</span>
+            <img src="assets/img/trips/rwanda-tanzania-afrique-festival.webp" alt="Afrique en Couleur Festival, Rwanda and Tanzania Experience flyer" />
+          </div>
+          <div class="trip-card__body">
+            <h3>Afrique en Couleur Festival</h3>
+            <p class="dates">Rwanda &amp; Tanzania &middot; Oct 2027</p>
+            <p class="blurb">A Rwanda &amp; Tanzania experience for the festival.</p>
+            <a class="btn btn-outline" href="https://destinationkonpa.com/konpa-in-asia/" target="_blank" rel="noopener">Book Now</a>
           </div>
         </div>
-        <div class="dest-card">
-          <div class="dest-card__image"></div>
-          <div class="dest-card__body">
-            <h3>Turks &amp; Caicos</h3>
-            <p class="dest-card__country">Providenciales</p>
-            <p class="blurb">Grace Bay's powder-soft sand and some of the clearest water anywhere.</p>
-          </div>
-        </div>
-        <div class="dest-card">
-          <div class="dest-card__image"></div>
-          <div class="dest-card__body">
-            <h3>Aruba</h3>
-            <p class="dest-card__country">Oranjestad</p>
-            <p class="blurb">One Happy Island — steady sun, calm water, and easy travel.</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -190,7 +212,57 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="video-showcase">
+        <div>
+          <p class="eyebrow">The DK Experience</p>
+          <h2>This isn't a brochure. It's the actual vibe.</h2>
+          <p style="margin-top:16px;font-size:14px;line-height:1.7;color:rgba(26,23,18,.7);max-width:520px">
+            Real trips, real members, real Konpa. From rooftop lounges to
+            local markets to a flag raised on a hilltop in Haiti — this is
+            what a DK Travel Club trip actually looks like.
+          </p>
+          <ul class="video-showcase__list">
+            <li>Group trips with a built-in community, not a solo tour</li>
+            <li>Local culture, markets, and excursions — not just resorts</li>
+            <li>Every trip captured and shared back with the club</li>
+          </ul>
+          <a href="gallery.html" class="btn btn-gold" style="margin-top:28px">See the Gallery</a>
+        </div>
+        <div class="video-showcase__frame">
+          <video autoplay muted loop playsinline poster="assets/video/vibes-toast-poster.jpg">
+            <source src="assets/video/vibes-toast.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--cream">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Gallery</p>
+          <h2>Moments from the last few trips</h2>
+        </div>
+        <a href="gallery.html" style="font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--color-gold-dark)">View full gallery &rarr;</a>
+      </div>
+      <div class="gallery-grid">
+        <button type="button" class="gallery-item" data-full="assets/img/gallery/haiti-flag-group.jpg">
+          <img src="assets/img/gallery/haiti-flag-group.jpg" alt="DK Travel Club group photo holding the Haitian flag on a hilltop overlook" />
+        </button>
+        <button type="button" class="gallery-item" data-full="assets/img/gallery/rooftop-lounge-group.jpg">
+          <img src="assets/img/gallery/rooftop-lounge-group.jpg" alt="Group of friends at a rooftop lounge with a city skyline view" />
+        </button>
+        <button type="button" class="gallery-item" data-full="assets/img/gallery/market-juice-women.jpg">
+          <img src="assets/img/gallery/market-juice-women.jpg" alt="Travelers enjoying fresh juice at a local market" />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <p class="eyebrow">What Members Say</p>
       <div class="grid grid--3">
@@ -226,7 +298,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <a href="index.html" class="logo">Destination <span>Konpa</span></a>
+      <a href="index.html"><img class="logo-img" src="assets/img/dk-logo-black.png" alt="Destination Konpa" /></a>
       <p class="footer-about">Caribbean travel, built around the rhythm of Konpa. Save at your own pace, then pick your destination when you're ready to go.</p>
     </div>
     <div>
@@ -237,6 +309,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="ambassador.html">Ambassador</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="shop.html">DK Shop</a></li>

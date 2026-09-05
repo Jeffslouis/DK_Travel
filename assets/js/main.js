@@ -44,4 +44,67 @@ document.addEventListener("DOMContentLoaded", function () {
       contactForm.reset();
     });
   }
+
+  // ---- Scroll reveal ----
+  // Fades/slides common content blocks in as they enter the viewport.
+  // Targets are picked generically so new pages get the effect for free
+  // without needing a "reveal" class hand-added to every element.
+  var revealTargets = document.querySelectorAll(
+    ".card, .trip-card, .dest-card, .panel, blockquote.testimonial, " +
+      ".gallery-item, .section-head, .faq-item, .contact-details, " +
+      "#contact-form, .callout, .hero-note, .video-showcase"
+  );
+
+  if ("IntersectionObserver" in window && revealTargets.length) {
+    revealTargets.forEach(function (el) {
+      el.classList.add("reveal");
+    });
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    revealTargets.forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
+  // ---- Lightbox (gallery) ----
+  var lightbox = document.getElementById("lightbox");
+  if (lightbox) {
+    var lightboxImg = lightbox.querySelector("img");
+    var lightboxClose = lightbox.querySelector(".lightbox-close");
+
+    document.querySelectorAll(".gallery-item").forEach(function (item) {
+      item.addEventListener("click", function () {
+        var fullSrc = item.getAttribute("data-full") || item.querySelector("img").src;
+        lightboxImg.src = fullSrc;
+        lightboxImg.alt = item.querySelector("img").alt || "";
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      document.body.style.overflow = "";
+      lightboxImg.src = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (event) {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLightbox();
+    });
+  }
 });

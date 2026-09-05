@@ -16,6 +16,8 @@ it locally with working relative links:
 
 ```bash
 npx serve .
+# or, if you have Python:
+python -m http.server 3000
 ```
 
 Then open the URL it prints (defaults to http://localhost:3000). You can
@@ -26,19 +28,38 @@ local server.
 ## Project structure
 
 ```
-index.html            Home
-about.html
-faq.html               accordion built with native <details>/<summary>
-destinations.html
-contact.html            working form (currently logs to a static "sent"
-                         state client-side — see note below)
-dk-travel-club.html      DK Travel Club membership marketing page
-ambassador.html          Ambassador affiliate program marketing page
-shop.html                DK Shop preview (no cart yet)
+index.html               Home — full-screen video hero, Upcoming Trips,
+                          video showcase, gallery teaser, testimonials
+about.html                includes a real event photo banner
+faq.html                  accordion built with native <details>/<summary>
+destinations.html         "Upcoming Trips" — real scheduled group trips
+                          (2026/2027), each linking out to the live booking
+                          page on destinationkonpa.com
+gallery.html               full photo gallery with click-to-enlarge lightbox
+contact.html               working form (currently logs to a static "sent"
+                            state client-side — see note below)
+dk-travel-club.html        DK Travel Club membership marketing page
+ambassador.html            Ambassador affiliate program marketing page
+shop.html                  DK Shop preview (no cart yet)
 
 assets/
-  css/styles.css         entire design system: colors, type, components
-  js/main.js             mobile nav toggle + contact form handling
+  css/styles.css           entire design system: colors, type, components,
+                            hover/scroll-reveal animation, gallery/lightbox,
+                            video showcase
+  js/main.js               mobile nav toggle, contact form handling,
+                            scroll-reveal (IntersectionObserver), lightbox
+  img/
+    dk-logo-black.png       real logo (pulled from the live site)
+    dk-pattern.svg           decorative brand pattern (from the live site)
+    community-event.jpg      real event photo (Facebook cover photo)
+    trips/                   the 4 real event flyers used as trip cards
+    gallery/                 6 real photos from the DK Travel Club Facebook
+                              photo album (used with permission — see note)
+  video/
+    hero-beach.mp4            homepage hero background (stock, Pexels)
+    vibes-toast.mp4            vertical video used in the "DK Experience"
+                                showcase section (stock, Pexels)
+    *-poster.jpg               poster frames for both videos
 ```
 
 Every page repeats the same `<header>`/`<footer>` markup rather than using a
@@ -57,9 +78,9 @@ identical, and lift them straight into `header.php` / `footer.php`.
 ## Roadmap
 
 1. ✅ **Static design** — this repo. All pages, responsive layout, brand
-   system, and placeholder content/copy.
-2. ⏳ **Real content** — swap placeholder gradients for real destination
-   photos, add the logo, finalize copy.
+   system, real photos/video, gallery, and hover/scroll polish.
+2. ⏳ **More real content** — swap any remaining placeholder copy, add more
+   trip photos as new events happen.
 3. ⏳ **Port to a WordPress PHP theme** — convert this static markup into
    theme templates (`header.php`, `footer.php`, `page-*.php`, etc.), wire up
    WordPress's template hierarchy and menus.
@@ -75,3 +96,15 @@ identical, and lift them straight into `header.php` / `footer.php`.
   `assets/js/main.js` and shows a "not connected yet" message — there's no
   backend on a static site. When this becomes the WordPress theme, wire it
   to `wp_mail()` (or an SMTP plugin) instead.
+- **Image/video sourcing:** the logo, brand pattern, and event flyers came
+  from the live destinationkonpa.com site. The 6 gallery photos and the
+  homepage "community" photo came from the DK Travel Club Facebook page,
+  pulled with the account owner's confirmation that attendee photos are
+  cleared for marketing use. The two background videos (hero + video
+  showcase) are free stock footage from Pexels, standing in until real
+  trip footage is available.
+- **Video file size:** `hero-beach.mp4` (~27 MB) and `vibes-toast.mp4`
+  (~15 MB) are un-compressed stock downloads. Before this goes to
+  production, run them through a compressor (e.g. HandBrake) and trim to a
+  shorter loop — no video-capable `ffmpeg` build was available in the
+  environment this was built in to do that here.
