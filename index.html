@@ -60,16 +60,14 @@
 <main>
 
   <section class="hero-video">
-    <video
-      class="hero-video__media"
-      autoplay
-      muted
-      loop
-      playsinline
-      poster="assets/video/hero-beach-poster.jpg"
-    >
-      <source src="assets/video/hero-beach.mp4" type="video/mp4" />
-    </video>
+    <div class="hero-slideshow">
+      <img class="hero-slideshow__slide is-active" src="assets/img/gallery/haiti-flag-group.jpg" alt="DK Travel Club group holding the Haitian flag on a hilltop overlook" />
+      <img class="hero-slideshow__slide" src="assets/img/gallery/rooftop-lounge-group.jpg" alt="DK Travel Club members at a rooftop lounge with a city skyline" />
+      <img class="hero-slideshow__slide" src="assets/img/gallery/dance-floor-crowd.jpg" alt="DK Travel Club members dancing together at a red-dress event" />
+      <img class="hero-slideshow__slide" src="assets/img/gallery/market-juice-women.jpg" alt="Travelers enjoying fresh juice at a local market" />
+      <img class="hero-slideshow__slide" src="assets/img/gallery/market-drinks-friends.jpg" alt="Two friends with drinks at a local market stall" />
+      <img class="hero-slideshow__slide" src="assets/img/gallery/bar-selfie-group.jpg" alt="Group selfie of DK Travel Club members at a bar" />
+    </div>
     <div class="hero-video__overlay"></div>
     <div class="container">
       <p class="eyebrow eyebrow--on-dark">Vacation Always Paid In Advance</p>
@@ -80,9 +78,13 @@
         <a href="destinations.html" class="btn btn-outline">Explore Destinations</a>
       </div>
     </div>
-    <div class="hero-video__scroll" aria-hidden="true">
-      Scroll
-      <span></span>
+    <div class="hero-slideshow__dots" aria-hidden="true">
+      <button type="button" class="is-active" aria-label="Slide 1"></button>
+      <button type="button" aria-label="Slide 2"></button>
+      <button type="button" aria-label="Slide 3"></button>
+      <button type="button" aria-label="Slide 4"></button>
+      <button type="button" aria-label="Slide 5"></button>
+      <button type="button" aria-label="Slide 6"></button>
     </div>
   </section>
 

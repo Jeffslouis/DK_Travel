@@ -28,8 +28,9 @@ local server.
 ## Project structure
 
 ```
-index.html               Home — full-screen video hero, Upcoming Trips,
-                          video showcase, gallery teaser, testimonials
+index.html               Home — full-screen real-photo slideshow hero,
+                          Upcoming Trips, video showcase, gallery teaser,
+                          testimonials
 about.html                includes a real event photo banner
 faq.html                  accordion built with native <details>/<summary>
 destinations.html         "Upcoming Trips" — real scheduled group trips
@@ -45,21 +46,22 @@ shop.html                  DK Shop preview (no cart yet)
 assets/
   css/styles.css           entire design system: colors, type, components,
                             hover/scroll-reveal animation, gallery/lightbox,
-                            video showcase
+                            hero slideshow, video showcase
   js/main.js               mobile nav toggle, contact form handling,
-                            scroll-reveal (IntersectionObserver), lightbox
+                            scroll-reveal (IntersectionObserver), lightbox,
+                            hero slideshow (autoplay + dot navigation)
   img/
     dk-logo-black.png       real logo (pulled from the live site)
     dk-pattern.svg           decorative brand pattern (from the live site)
     community-event.jpg      real event photo (Facebook cover photo)
     trips/                   the 4 real event flyers used as trip cards
     gallery/                 6 real photos from the DK Travel Club Facebook
-                              photo album (used with permission — see note)
+                              photo album (used with permission — see note).
+                              Also used as the homepage hero slideshow.
   video/
-    hero-beach.mp4            homepage hero background (stock, Pexels)
-    vibes-toast.mp4            vertical video used in the "DK Experience"
-                                showcase section (stock, Pexels)
-    *-poster.jpg               poster frames for both videos
+    vibes-toast.mp4           vertical video used in the "DK Experience"
+                               showcase section (stock, Pexels)
+    vibes-toast-poster.jpg    poster frame for that video
 ```
 
 Every page repeats the same `<header>`/`<footer>` markup rather than using a
@@ -97,14 +99,14 @@ identical, and lift them straight into `header.php` / `footer.php`.
   backend on a static site. When this becomes the WordPress theme, wire it
   to `wp_mail()` (or an SMTP plugin) instead.
 - **Image/video sourcing:** the logo, brand pattern, and event flyers came
-  from the live destinationkonpa.com site. The 6 gallery photos and the
-  homepage "community" photo came from the DK Travel Club Facebook page,
-  pulled with the account owner's confirmation that attendee photos are
-  cleared for marketing use. The two background videos (hero + video
-  showcase) are free stock footage from Pexels, standing in until real
-  trip footage is available.
-- **Video file size:** `hero-beach.mp4` (~27 MB) and `vibes-toast.mp4`
-  (~15 MB) are un-compressed stock downloads. Before this goes to
-  production, run them through a compressor (e.g. HandBrake) and trim to a
-  shorter loop — no video-capable `ffmpeg` build was available in the
-  environment this was built in to do that here.
+  from the live destinationkonpa.com site. The 6 gallery photos (also used
+  as the homepage hero slideshow) and the homepage "community" photo came
+  from the DK Travel Club Facebook page, pulled with the account owner's
+  confirmation that attendee photos are cleared for marketing use. The
+  "DK Experience" showcase video is free stock footage from Pexels,
+  standing in until real trip footage is available.
+- **Video file size:** `vibes-toast.mp4` (~15 MB) is an un-compressed
+  stock download. Before this goes to production, run it through a
+  compressor (e.g. HandBrake) and trim to a shorter loop — no
+  video-capable `ffmpeg` build was available in the environment this was
+  built in to do that here.

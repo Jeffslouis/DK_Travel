@@ -8,6 +8,44 @@ document.addEventListener("DOMContentLoaded", function () {
     year.textContent = new Date().getFullYear();
   }
 
+  // ---- Hero slideshow (real photos, homepage) ----
+  var slideshow = document.querySelector(".hero-slideshow");
+  if (slideshow) {
+    var slides = slideshow.querySelectorAll(".hero-slideshow__slide");
+    var dotsWrap = document.querySelector(".hero-slideshow__dots");
+    var dots = dotsWrap ? dotsWrap.querySelectorAll("button") : [];
+    var current = 0;
+    var slideTimer = null;
+
+    function showSlide(index) {
+      slides[current].classList.remove("is-active");
+      if (dots[current]) dots[current].classList.remove("is-active");
+      current = index;
+      slides[current].classList.add("is-active");
+      if (dots[current]) dots[current].classList.add("is-active");
+    }
+
+    function nextSlide() {
+      showSlide((current + 1) % slides.length);
+    }
+
+    function startAutoplay() {
+      slideTimer = window.setInterval(nextSlide, 5000);
+    }
+
+    if (slides.length > 1) {
+      startAutoplay();
+
+      dots.forEach(function (dot, index) {
+        dot.addEventListener("click", function () {
+          window.clearInterval(slideTimer);
+          showSlide(index);
+          startAutoplay();
+        });
+      });
+    }
+  }
+
   var toggle = document.querySelector(".nav-toggle");
   var mobileNav = document.querySelector(".mobile-nav");
 
