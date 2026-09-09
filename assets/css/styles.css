@@ -805,7 +805,62 @@ button {
   white-space: nowrap;
 }
 
+/* ---- Carousel (horizontal scroll-snap, used for flyers/photos) ---- */
+.carousel-wrap {
+  position: relative;
+  margin-top: 48px;
+}
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 24px;
+  padding: 4px 24px 12px;
+  margin: 0 -24px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+.carousel-nav {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+.carousel-nav button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.carousel-nav button:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal-dark);
+}
+@media (min-width: 640px) {
+  .carousel-nav { display: flex; }
+}
+
 /* ---- Trip cards (real event flyers, used in Upcoming Trips) ---- */
+.carousel .trip-card {
+  width: 240px;
+}
+@media (min-width: 640px) {
+  .carousel .trip-card { width: 270px; }
+}
 .trip-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -1207,6 +1262,18 @@ blockquote.testimonial footer {
 }
 .gallery-item:hover::after {
   opacity: 1;
+}
+
+.carousel .gallery-item {
+  width: 220px;
+  margin-bottom: 0;
+}
+.carousel .gallery-item img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+@media (min-width: 640px) {
+  .carousel .gallery-item { width: 260px; }
 }
 
 .lightbox {

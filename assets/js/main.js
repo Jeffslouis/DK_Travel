@@ -8,6 +8,24 @@ document.addEventListener("DOMContentLoaded", function () {
     year.textContent = new Date().getFullYear();
   }
 
+  // ---- Carousels (horizontal scroll-snap, flyers/photos) ----
+  document.querySelectorAll(".carousel-wrap").forEach(function (wrap) {
+    var track = wrap.querySelector(".carousel");
+    var prevBtn = wrap.querySelector('[data-dir="prev"]');
+    var nextBtn = wrap.querySelector('[data-dir="next"]');
+    if (!track) return;
+
+    function scrollByCards(dir) {
+      var item = track.querySelector(":scope > *");
+      var gap = 20;
+      var amount = item ? (item.getBoundingClientRect().width + gap) * 2 : 300;
+      track.scrollBy({ left: dir * amount, behavior: "smooth" });
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { scrollByCards(-1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { scrollByCards(1); });
+  });
+
   // ---- Hero slideshow (real photos, homepage) ----
   var slideshow = document.querySelector(".hero-slideshow");
   if (slideshow) {
