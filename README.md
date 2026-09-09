@@ -16,8 +16,6 @@ it locally with working relative links:
 
 ```bash
 npx serve .
-# or, if you have Python:
-python -m http.server 3000
 ```
 
 Then open the URL it prints (defaults to http://localhost:3000). You can
@@ -36,7 +34,7 @@ faq.html                  accordion built with native <details>/<summary>
 destinations.html         "Upcoming Trips" — real scheduled group trips
                           (2026/2027), each linking out to the live booking
                           page on destinationkonpa.com
-gallery.html               full photo gallery with click-to-enlarge lightbox
+gallery.html               57-photo gallery with click-to-enlarge lightbox
 contact.html               working form (currently logs to a static "sent"
                             state client-side — see note below)
 dk-travel-club.html        DK Travel Club membership marketing page
@@ -55,13 +53,19 @@ assets/
     dk-pattern.svg           decorative brand pattern (from the live site)
     community-event.jpg      real event photo (Facebook cover photo)
     trips/                   the 4 real event flyers used as trip cards
-    gallery/                 6 real photos from the DK Travel Club Facebook
-                              photo album (used with permission — see note).
-                              Also used as the homepage hero slideshow.
+    destinations/             2 photos sourced from nappy.co, used as photo
+                              banners on Destinations/Ambassador
+    gallery/                 57 real photos — 6 from an early Facebook pull,
+                              35 more from the DK Travel Club Facebook page
+                              (`fb-*.jpg`), 16 from photos saved out of
+                              Instagram (`ig-*.jpg`). The first 6 also drive
+                              the homepage hero slideshow.
   video/
-    vibes-toast.mp4           vertical video used in the "DK Experience"
-                               showcase section (stock, Pexels)
-    vibes-toast-poster.jpg    poster frame for that video
+    ig-clip-*.mp4             9 real video clips saved from
+                              instagram.com/dktravelclub — ig-clip-05.mp4 is
+                              the one used in the homepage "DK Experience"
+                              showcase; the other 8 aren't wired up to
+                              anything yet, kept for future use
 ```
 
 Every page repeats the same `<header>`/`<footer>` markup rather than using a
@@ -69,12 +73,22 @@ templating include — that's intentional for a plain static site, and it also
 means a PHP developer can diff the repeated blocks, confirm they're
 identical, and lift them straight into `header.php` / `footer.php`.
 
+## Nav
+
+The header shows 5 core links (Home, Destinations, DK Travel Club, Gallery,
+Contact) plus a "Join DK Travel Club" button. About, FAQ, Ambassador, and DK
+Shop live under a "More" group in the mobile menu, and are listed in full in
+the footer on every page.
+
 ## Brand
 
-- **Colors:** black `#0b0b0c`, gold `#c6971a`, cream `#faf6ec` — defined as
-  CSS custom properties at the top of `assets/css/styles.css`.
-- **Fonts:** Playfair Display (headings) + Inter (body), loaded from Google
-  Fonts.
+- **Colors:** off-white background `#fafaf8`, ink text `#12181b`, ocean teal
+  `#0e7c7b` (primary), coral `#ff6b4a` (accent/CTAs), sand `#f3efe6` (alt
+  section background) — defined as CSS custom properties at the top of
+  `assets/css/styles.css`. (Earlier passes tried an all-cream boutique look
+  and then a black/gold nightlife look; this is the current direction —
+  clean and modern rather than either of those.)
+- **Fonts:** Manrope (headings) + Inter (body), loaded from Google Fonts.
 - **Tagline:** "Vacation Always Paid In Advance"
 
 ## Roadmap
@@ -99,14 +113,13 @@ identical, and lift them straight into `header.php` / `footer.php`.
   backend on a static site. When this becomes the WordPress theme, wire it
   to `wp_mail()` (or an SMTP plugin) instead.
 - **Image/video sourcing:** the logo, brand pattern, and event flyers came
-  from the live destinationkonpa.com site. The 6 gallery photos (also used
-  as the homepage hero slideshow) and the homepage "community" photo came
-  from the DK Travel Club Facebook page, pulled with the account owner's
-  confirmation that attendee photos are cleared for marketing use. The
-  "DK Experience" showcase video is free stock footage from Pexels,
-  standing in until real trip footage is available.
-- **Video file size:** `vibes-toast.mp4` (~15 MB) is an un-compressed
-  stock download. Before this goes to production, run it through a
-  compressor (e.g. HandBrake) and trim to a shorter loop — no
-  video-capable `ffmpeg` build was available in the environment this was
-  built in to do that here.
+  from the live destinationkonpa.com site. The gallery/hero photos and video
+  clips came from the DK Travel Club Facebook page and from photos/videos
+  saved out of Instagram (instagram.com/dktravelclub) — real content, not
+  stock. Two photo-banner images (Destinations, Ambassador pages) are free
+  stock from nappy.co, standing in until more real photos are available for
+  those spots.
+- **Repo size:** `assets/video/` is ~82 MB (9 real clips saved from
+  Instagram). Only one is currently used on the site; consider trimming the
+  unused ones from git history later if repo size becomes a problem, or
+  moving video to external hosting once this becomes a live theme.
