@@ -177,10 +177,6 @@ button {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .promo-ticker__track { animation: none; }
-}
-
 /* ---- VIP badge (kept as a small pill accent) ---- */
 .badge-vip {
   display: inline-flex;
