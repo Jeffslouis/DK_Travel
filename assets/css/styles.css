@@ -66,6 +66,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor targets need to clear the sticky header (topbar + mainnav)
+   instead of landing right underneath it. */
+[id] {
+  scroll-margin-top: 110px;
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
