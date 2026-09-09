@@ -66,10 +66,10 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Anchor targets need to clear the sticky header (topbar + mainnav)
-   instead of landing right underneath it. */
+/* Anchor targets need to clear the sticky header (mainnav only, now
+   that the topbar is gone) instead of landing right underneath it. */
 [id] {
-  scroll-margin-top: 110px;
+  scroll-margin-top: 80px;
 }
 
 body {
@@ -261,32 +261,6 @@ button {
   z-index: 50;
 }
 
-.topbar {
-  display: none;
-  background: var(--color-chrome);
-  color: rgba(255, 255, 255, 0.72);
-}
-.topbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-size: 12px;
-}
-.topbar a:hover {
-  color: var(--color-white);
-}
-.topbar-contact {
-  display: flex;
-  gap: 24px;
-}
-.topbar-tagline {
-  font-family: var(--font-display);
-  font-weight: 600;
-  color: var(--color-white);
-}
-
 .mainnav {
   background: rgba(13, 13, 13, 0.9);
   backdrop-filter: blur(10px);
@@ -412,7 +386,6 @@ button {
 }
 
 @media (min-width: 1024px) {
-  .topbar { display: block; }
   .nav-links { display: flex; }
   .nav-cta { display: inline-flex; }
   .nav-toggle { display: none; }
