@@ -52,8 +52,8 @@
   --glow-gold: var(--shadow-md);
   --glow-gold-strong: var(--shadow-lg);
 
-  --font-display: "Quicksand", Arial, Helvetica, sans-serif;
-  --font-sans: "Quicksand", Arial, Helvetica, sans-serif;
+  --font-display: "Sora", Arial, Helvetica, sans-serif;
+  --font-sans: "Inter", Arial, Helvetica, sans-serif;
 
   --container: 1152px;
 }
@@ -93,7 +93,7 @@ a {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.15;
   margin: 0;
   letter-spacing: -0.01em;
@@ -471,6 +471,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 78%;
   z-index: 0;
 }
 .hero-slideshow {
@@ -590,31 +591,47 @@ button {
   }
 }
 
-/* ---- Perk strip ---- */
+/* ---- Perk strip (moving marquee, left to right) ---- */
 .perks {
+  overflow: hidden;
   background: var(--color-teal-tint);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
-.perks .container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  padding: 28px 24px;
-  text-align: center;
+.perks__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: perks-scroll 26s linear infinite;
+  padding: 16px 0;
+}
+.perks:hover .perks__track {
+  animation-play-state: paused;
 }
 .perks span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 24px;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-teal-dark);
+  white-space: nowrap;
 }
-@media (min-width: 640px) {
-  .perks .container { grid-template-columns: repeat(3, 1fr); }
+.perks span::after {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-left: 24px;
+  border-radius: 50%;
+  background: var(--color-teal-dark);
+  opacity: 0.5;
 }
-@media (min-width: 1024px) {
-  .perks .container { grid-template-columns: repeat(6, 1fr); }
+@keyframes perks-scroll {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 /* ---- Sections ---- */
